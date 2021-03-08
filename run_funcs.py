@@ -14,7 +14,8 @@ SUPPORTED_LANGS = [
         'node',
         'golang',
         'elixir',
-        'haskell']
+        'haskell',
+        'php']
 
 RUN_CMDS = {
         'ruby': 'ruby',
@@ -23,7 +24,8 @@ RUN_CMDS = {
         'perl': 'perl',
         'golang': 'go run',
         'elixir': 'elixir',
-        'haskell': 'runhaskell'}
+        'haskell': 'runhaskell',
+        'php': 'php'}
 
 
 def run_fun(path, func):
@@ -38,7 +40,8 @@ def run_fun(path, func):
         'ruby': '[ -e Gemfile ] && bundle install >/dev/null 2>&1',
         'python': '[ -e requirements.txt ] && pip install -r requirements.txt >/dev/null 2>&1',
         'node': '[ -e package.json ] && npm install --only=prod >/dev/null 2>&1',
-        'perl': '[ -e cpanfile ] && cpanm --installdeps . >/dev/null 2>&1'}
+        'perl': '[ -e cpanfile ] && cpanm --installdeps . >/dev/null 2>&1',
+        'php': '[ -e composer.lock ] && composer install --no-dev >/dev/null 2>&1'}
 
     cmd = ['docker', 'run', '--rm', '--workdir', '/github/workspace',
            '-v', os.getenv('GITHUB_WORKSPACE') + ':/github/workspace',
